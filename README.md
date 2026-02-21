@@ -1,16 +1,24 @@
 ## Hi there 👋
 
-<!--
-**sokolgora-sketch/sokolgora-sketch** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# Im Sokol Gora
 
-Here are some ideas to get you started:
+Building **ZË-RO** — a deterministic *seven-vowel linguistic decoder* (orthography + optional IPA), with evidence-first telemetry and anti-regression rails.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Flagship project
+- **ZË-RO / Linguistic Decoder**: https://github.com/sokolgora-sketch/linguistic-decoder  
+  Deterministic vowel-path extraction, Mask vs Carrier divergence (DIVERGE), gates, Canon C2 drift harness.
+
+## Also
+- **Seven Voices Orb**: https://github.com/sokolgora-sketch/seven-voices-orb  
+  A rules/logic prototype built around the Seven-Voices system.
+
+## What I care about
+- Determinism (same input → same output)
+- Evidence-first UI (no raw payload rendering)
+- Guardrails (tests + baselines so changes don’t silently break meaning)
+
+## Current focus
+- Expand Canon C2 corpus + validation reporting
+- Tighten “carrier vs mask” honesty across spelling vs IPA
+
+(Last updated: 2026-02)
