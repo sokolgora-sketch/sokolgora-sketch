@@ -10,7 +10,12 @@ ZË-RO is designed as a **calibrated instrument**, not a vibes generator:
 - **Mask vs Carrier honesty**: spelling path vs spoken (IPA) path can **diverge**
 - **Anti-regression rails**: Canon C2 baseline + diff reports catch drift
 
----
+---## How it works (high level)
+
+
+Input word (+ optional IPA)
+→ Heart: deterministic vowel/carrier extraction (SSOT)
+→ Gates + Evidence telemetry + Canon C2 drift checks
 
 ## Flagship
 - **ZË-RO / Linguistic Decoder:** https://github.com/sokolgora-sketch/linguistic-decoder  
