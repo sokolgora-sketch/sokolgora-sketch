@@ -144,6 +144,7 @@ A deterministic computational framework for phonetic-semantic analysis:
 ## 📫 Connect
 
 - **Location:** Taichung, Taiwan
+- email sokolgora@gmail.com
 - **Origin:** Kosovo (native Albanian speaker)
 - **Research interests:** Phonetic iconicity, computational linguistics, Albanian linguistics, morphophonology, tone-vowel interactions
 
