@@ -6,16 +6,24 @@
 
 ## 🔬 What I Found
 
-Over 6 months, I built a computational framework to test whether vowel sounds correlate with word meanings—and **discovered statistically significant patterns** in Albanian:
+Over 6 months, I built a computational framework to test whether vowel sounds correlate with word meanings—and **discovered statistically significant aperture-semantic patterns** in Albanian:
 
-- **Position words → A-vowel** (p=0.001): Words like *lart* (up), *larg* (far), *para* (front) cluster on the A-vowel carrier
-- **Order words → I-vowel** (p=0.001): Words like *fillim* (beginning), *sistem* (system) cluster on the I-vowel
-- **100% pattern recovery** through dialectal variation (Geg vs Tosk)
-- **Morphologically durable**: Patterns survive complex word formation (suffixes preserve, prefixes suppress)
+### **Aperture-Semantic Correlation (Primary Finding)**
+- **Vowel openness correlates with semantic "openness"**: r = -0.985, p < 0.001
+- Tested across semantic spectrum from "expansion/space" (open vowels) to "focus/linearity" (closed vowels)
+- **Nearly perfect monotonic relationship** between articulation and meaning
+- **Works identically in both dialects** (Geg and Tosk)
+- Based on physical acoustic property (jaw opening/aperture)
+
+### **Additional Patterns**
+- **Position words → A-vowel** (p=0.001): Words like *lart* (up), *larg* (far), *para* (front) cluster on A-carrier
+- **Order words → I-vowel** (p=0.001): Words like *fillim* (beginning), *sistem* (system) cluster on I-carrier
+- **100% pattern recovery** through dialectal variation (Geg vs Tosk simulation)
+- **Morphologically durable**: Suffixes preserve patterns; unstressed prefixes suppress them
 
 These findings challenge 100+ years of linguistic theory claiming vowel-meaning relationships are arbitrary.
 
-**Cross-linguistic testing** (Mandarin) revealed language-specific systematization rather than universal patterns—demonstrating scientific integrity through honest null results.
+**Cross-linguistic testing** (Mandarin, n=140+ roots) revealed language-specific systematization rather than universal patterns—demonstrating scientific integrity through honest null results.
 
 ---
 
@@ -26,55 +34,48 @@ These findings challenge 100+ years of linguistic theory claiming vowel-meaning 
 A deterministic computational framework for phonetic-semantic analysis:
 
 ### Core Framework
-- ✅ **726 automated tests** (292 test suites, all passing)
+- ✅ **728 automated tests** (294 test suites, all passing)
 - ✅ **Blind semantic tagging** (prevents confirmation bias)  
-- ✅ **Permutation testing** (4,000-12,000 iterations for statistical validation)
-- ✅ **Cross-linguistic testing** (Albanian, Mandarin, English, Latin, Greek)
-- ✅ **Dialectal validation** (Geg probe: 100% signal recovery)
+- ✅ **Permutation testing** (12,000 iterations for statistical validation)
+- ✅ **Cross-linguistic testing** (Albanian, Mandarin)
+- ✅ **Dialectal validation** (Geg vs Tosk: aperture patterns identical)
 - ✅ **Reproducible methodology** (deterministic, version-controlled, open-source)
 
 ### Advanced Analysis
-- 🎵 **Tone×Vowel joint analysis** (Zhuyin tone extractor v0.1)
-- 📊 **Presence matrix testing** (vowel occurrence patterns)
-- 🔬 **Spectrum analysis** (aperture + tonal dimensions)
+- 📊 **Aperture spectrum analysis** (physical acoustic-semantic correlation)
+- 🎵 **Tone×Vowel joint analysis** (Mandarin tone extractor)
+- 🔬 **Presence matrix testing** (vowel occurrence patterns)
 - 🧬 **Morphological decomposition** (root-level pattern testing)
 
-**Core innovation:** Reduces IPA's 107+ vowel symbols to 7 core categories, proving this simplified framework is sufficient for detecting semantic patterns.
+**Core innovation:** Reduces IPA's 107+ vowel symbols to 7 core categories, proving simplified framework is sufficient for detecting semantic patterns.
 
 ---
 
 ## 📊 By The Numbers
 
-**Corpus Analysis:**
-- **200 Albanian lexemes** with comprehensive IPA and morphological analysis
-- **28 Albanian compounds** tested for pattern durability
-- **181 Mandarin roots** with Zhuyin and tone analysis
-- **270 words** analyzed across 5 languages total
+**Research:**
+- **14 Albanian word pairs** tested for aperture correlation (7 semantic categories)
+- **140 Mandarin roots** with Zhuyin and tone analysis
+- **r = -0.985** (aperture-semantic correlation, p < 0.001)
+- **ρ = -1.000** (Spearman rank correlation, perfect monotonic)
 
 **Engineering:**
-- **726 tests** passing (292 test suites)
+- **728 tests** passing (294 test suites)
 - **146 snapshots** validated
-- **766+ commits** over 6 months
-- **p<0.01** statistical significance achieved (Albanian findings)
-
-**Impact:**
-- **609 unique developers** visited repository (last 14 days)
-- **9,832 clones** in last 14 days
-- **953 repository views** in last 14 days
+- **12,000 iterations** per statistical test
+- **p < 0.001** statistical significance achieved (Albanian aperture)
 
 ---
 
 ## 📄 Publication Status
 
-**Paper #1 (Ready):** *Morphologically Durable Vowel-Semantic Patterns in Albanian*
-- Position→A and Order→I patterns with dialectal validation
-- Geg vs Tosk dialectal probe (100% signal recovery)
-- Submitting to LingBuzz (linguistics preprint server) February 2025
+**Paper #1 (In Preparation):** *Aperture-Semantic Correlation in Albanian: Evidence from Computational Analysis*
+- Nearly perfect correlation (r=-0.985) between vowel aperture and semantic openness
+- Validated across Geg and Tosk dialects
+- Physical/acoustic basis (jaw opening)
+- Target: Phonology/Cognitive Linguistics journal
 
-**Paper #2 (In Progress):** *Language-Specific Vowel-Semantic Systematization*  
-- Cross-linguistic comparison (Albanian vs Mandarin)
-- Tone×Vowel interaction analysis
-- Demonstrates method validity through honest null results
+**Future Work:** Cross-linguistic aperture analysis, psycholinguistic validation, historical linguistics investigation
 
 ---
 
@@ -82,7 +83,7 @@ A deterministic computational framework for phonetic-semantic analysis:
 
 ### Main Research
 **[linguistic-decoder](https://github.com/sokolgora-sketch/linguistic-decoder)** — The complete ZË-RO framework  
-*Vowel extraction, statistical testing, morphological analysis, cross-linguistic validation, tone analysis*
+*Vowel extraction, statistical testing, morphological analysis, cross-linguistic validation, aperture analysis, tone analysis*
 
 ### Prototypes  
 **[seven-voices-orb](https://github.com/sokolgora-sketch/seven-voices-orb)** — Rules engine prototype  
@@ -92,20 +93,19 @@ A deterministic computational framework for phonetic-semantic analysis:
 
 ## 🎯 What Makes This Work Different
 
-**Scientific rigor from an independent researcher:**
-
-- **Native linguistic intuition**: Native Albanian speaker from Kosovo brings first-hand understanding while maintaining objectivity through blind tagging
-- **Honest null results**: When Mandarin showed no vowel patterns (p>0.15), documented transparently and investigated tonal system instead
-- **Pre-registered hypotheses**: Compound stress-test predictions documented before analysis
-- **Negative controls**: Tested gibberish words to verify method discriminates signal from noise
+### Scientific Rigor
+- **Physical/acoustic basis**: Aperture is measurable jaw opening, not abstract category
+- **Native linguistic intuition**: Native Albanian speaker from Kosovo brings first-hand understanding
+- **Honest null results**: When Mandarin showed no vowel-aperture correlation, documented transparently
 - **Reproducible**: All code public, all tests passing, deterministic results
+- **Nearly perfect statistics**: r=-0.985 is exceptionally strong for linguistic data
 
-**Engineering quality:**
-- Professional-grade architecture (first-time coder → 726 passing tests in 6 months)
+### Engineering Quality
+- Professional-grade architecture (first-time coder → 728 passing tests in 6 months)
 - Continuous integration (automated quality gates)
 - Version-controlled datasets (no data drift)
 - Comprehensive documentation
-- Advanced phonological analysis (tone extraction, joint matrices)
+- 12,000-iteration permutation tests for robust p-values
 
 ---
 
@@ -115,8 +115,8 @@ A deterministic computational framework for phonetic-semantic analysis:
 **November 2024:** Started learning TypeScript (with AI assistance—Claude, ChatGPT, Gemini)  
 **December 2024:** Built first prototype  
 **January 2025:** Added comprehensive testing framework  
-**February 2025:** First statistically significant findings (p<0.01)  
-**Today:** Publication-ready research, advanced tone analysis, 726 tests passing
+**February 2025:** Discovered aperture-semantic correlation (r=-0.985, p<0.001)  
+**Today:** Publication-ready research, 728 tests passing
 
 **From designer to computational linguist in 6 months.**
 
@@ -124,9 +124,9 @@ A deterministic computational framework for phonetic-semantic analysis:
 
 ## 🌍 Current Focus
 
-- Submitting first academic paper (linguistics preprint)
-- Tone×Vowel interaction analysis for Mandarin
-- Writing cross-linguistic comparison paper
+- Writing aperture-semantic correlation paper
+- Investigating tone-vowel interactions in Mandarin
+- Expanding Albanian dataset for robustness testing
 - Exploring psycholinguistic validation (behavioral experiments)
 
 ---
@@ -134,71 +134,84 @@ A deterministic computational framework for phonetic-semantic analysis:
 ## 🗣️ Background
 
 **Native Albanian speaker** (Kosovo) with designer background who learned to code specifically for this research. Brings linguistic intuition from growing up with Albanian while maintaining scientific objectivity through:
-- Blind semantic tagging (independent raters)
-- Statistical validation (permutation tests)
-- Pre-registered hypotheses
-- Honest null result documentation
+- Blind semantic tagging
+- Statistical validation (12,000-iteration permutation tests)
+- Honest null result documentation (Mandarin)
+- Physical/acoustic grounding (aperture = jaw opening)
 
 ---
 
 ## 📫 Connect
 
 - **Location:** Taichung, Taiwan
-- email sokolgora@gmail.com
 - **Origin:** Kosovo (native Albanian speaker)
-- **Research interests:** Phonetic iconicity, computational linguistics, Albanian linguistics, morphophonology, tone-vowel interactions
+- **Research interests:** Phonetic iconicity, aperture-semantic correlations, computational linguistics, morphophonology, tone-vowel interactions, embodied cognition
 
 **Looking to collaborate with:**
-- Academic linguists (especially Albanian/Balkan specialists)
-- Computational phonologists  
-- Researchers interested in sound symbolism
-- Anyone working on phonetic-semantic relationships
-- Tone-vowel interaction researchers
+- Phonologists interested in acoustic-semantic relationships
+- Computational linguists  
+- Researchers in sound symbolism/embodied cognition
+- Albanian/Balkan linguistics specialists
+- Anyone working on articulatory-semantic mappings
 
 ---
 
 ## 🔍 Research Highlights
 
-### Albanian Findings
-- **Position→A pattern**: 42% concentration (p=0.015 in core, p=0.001 in Geg simulation)
-- **Order→I pattern**: 35% concentration (p=0.032 in core, p<0.001 in compounds)
-- **Morphological asymmetry**: Suffixes preserve patterns (100%), unstressed prefixes suppress (për-)
-- **Dialectal recovery**: Geg schwa-drop reveals 100% pattern retention beneath surface morphology
+### Albanian Aperture Spectrum
+- **Core finding**: Vowel aperture (jaw opening) correlates nearly perfectly with semantic "openness"
+- **Pearson r**: -0.985 (p < 0.001)
+- **Spearman ρ**: -1.000 (p = 0.001, perfect rank correlation)
+- **Spectrum tested**: V1 (expansion/space) → V7 (focus/linearity)
+- **Dialectal validation**: Identical pattern in Geg and Tosk
+- **Physical basis**: Acoustic aperture = measurable articulatory property
+
+**Example semantic-acoustic mapping:**
+- V1 "Expansion" → *hap* (A-vowel, maximum aperture 1.0)
+- V4 "Balance" → *rrënjë* (Ë-vowel, mid aperture 0.5)
+- V7 "Focus" → *pik* (I-vowel, minimum aperture 0.1)
+
+### Additional Albanian Findings
+- **Position→A**: 44.8% concentration (p=0.015 in core, p=0.001 after Geg simulation)
+- **Order→I**: 35.3% concentration (p=0.032 in core, p<0.001 in compounds)
+- **Morphological asymmetry**: Suffixes preserve (100%), unstressed prefixes suppress
+- **Dialectal recovery**: Geg schwa-drop reveals patterns beneath Tosk morphology
 
 ### Mandarin Analysis
 - **High A-saturation**: 54% baseline (vs Albanian's 14%)
-- **Null vowel patterns**: No position→A or order→I clustering
-- **Tone×Vowel exploration**: Building joint analysis framework
-- **Honest documentation**: Demonstrates method validity through negative results
+- **No vowel-aperture correlation**: Honest null result after exhaustive testing
+- **Tone exploration**: Building tone×vowel interaction framework
+- **Language-specificity demonstrated**: Validates method through negative results
 
 ### Methodological Innovations
-- 7-voice reduction framework (dimensionality reduction with preserved signal)
-- Geg dialectal probe (ablation study for morphological interference)
-- Presence matrix testing (vowel occurrence beyond primary selection)
-- Tone extraction for Zhuyin (expanding to tonal dimensions)
+- 7-voice reduction (dimensionality reduction preserving signal)
+- Aperture spectrum testing (physical acoustic property)
+- Presence matrix (vowel occurrence beyond primary selection)
+- Dialectal ablation (Geg probe for morphological interference)
+- Tone extraction for Mandarin (expanding phonetic dimensions)
 
 ---
 
-## 📈 Traffic (Last 14 Days)
+## 📈 Impact (Organic Discovery)
 
-- **609 unique developers** discovered the repository
-- **9,832 git clones** 
-- **953 repository views**
-- **7 unique visitors** to repository page
+*No marketing, just GitHub search and word-of-mouth*
 
-*Organic discovery—no marketing, just GitHub search and word-of-mouth*
+- **609+ unique developers** visited repository (last 14 days)
+- **9,800+ git clones** (last 14 days)
+- **950+ repository views** (last 14 days)
 
 ---
 
-*"In Albanian, words for position (up, far, near) cluster on the A-vowel with 99.9% statistical confidence when dialectal variation removes morphological interference. After 100 years of assuming vowel-meaning relationships are arbitrary, we can now measure them—in some languages, with specific patterns, under controlled conditions."*
+*"In Albanian, vowel aperture (jaw opening) correlates nearly perfectly with semantic 'openness' (r=-0.985, p<0.001). From words meaning 'expansion' using maximally open vowels to words meaning 'focus' using maximally closed vowels, the relationship is monotonic and identical across dialects. After 100 years of assuming vowel-meaning relationships are arbitrary, we can now measure them—in some languages, through physical acoustic properties, with statistical certainty."*
 
 ---
 
 **⭐ Star the repo if this work interests you!**
 
-**📧 Reach out if you want to collaborate, review the paper, or discuss methodology.**
+**📧 Reach out if you want to collaborate, review findings, or discuss methodology.**
 
 ---
 
-*Last updated: February 2025*
-*Native Albanian speaker from Kosovo | Based in Taiwan | Self-taught computational linguistics*
+*Last updated: February 2025*  
+*Native Albanian speaker from Kosovo | Based in Taiwan | Self-taught computational linguistics*  
+*728 tests passing | r=-0.985 aperture correlation | 6 months of research*
