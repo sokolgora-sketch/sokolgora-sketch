@@ -1,181 +1,189 @@
-# ZË-RO — Deterministic Physical Grounding Layer for Natural Language
+# ZË-RO — Linguistic Decoder
 
-A calibrated instrument that maps lexical semantics onto **vocal-tract aperture** via a deterministic 7-vowel reduction layer.
+*A deterministic seven-vowel analysis instrument (orthography + optional IPA) with evidence-first telemetry and baseline-locked research harnesses.*
 
-**Core claim (Albanian):** bucketed semantic “openness” (V1→V7) exhibits near-perfect monotonic descent in vowel aperture.  
-**Calibration integrity (Mandarin):** same instrument returns a non-significant result (does not force-fit).
-
----
-
-## What This Is
-
-ZË-RO is **not** a linguistic essay. It is a **measurement pipeline**:
-
-- deterministic extraction rails (SSOT)
-- fixed aperture model (A→I)
-- permutation-tested correlation over bucket means
-- baseline-locked drift detection (Canon-style)
-
-If a language contains a stable articulatory-semantic structure, ZË-RO should detect it.  
-If it does not, ZË-RO should say “no signal”.
+[![CI](https://github.com/sokolgora-sketch/linguistic-decoder/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sokolgora-sketch/linguistic-decoder/actions/workflows/ci.yml)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
 
 ---
 
-## Physics First: Aperture Model
+## What this repo is
 
-Aperture is modeled on a continuous 0.0–1.0 scale (jaw opening proxy) with a fixed 7-voice reduction:
+ZË-RO is a **calibration-grade decoder** for vowel-carrier structure in words.
 
-- **A = 1.0** (max open)
-- **O = 0.8**
-- **E = 0.6**
-- **Ë = 0.5**
-- **U = 0.4**
-- **Y = 0.3**
-- **I = 0.1** (max closed)
+It is designed to **measure**, **reproduce**, and **catch drift** — not to “sound right”.
 
-This reduction is intentionally coarse: it removes IPA allophonic noise while preserving a stable articulatory axis.
+Deterministic core behaviors:
 
----
+1) **Extract a 7-vowel “voice path”** using only: **A, E, I, O, U, Y, Ë**
+   - from **orthography** (spelling)
+   - from **phonetics** when an **IPA string** is provided (optional)
 
-## Albanian Result (Signal Detected)
+2) **Detect Mask vs Carrier divergence**
+   - if spelling path ≠ IPA carrier path, the UI marks **DIVERGE**
 
-Baseline-locked, Feb 2026 (Gegë/Tosk STEP10 v0.3; 140 rows; 12,000 permutation iterations; seed=90924101):
+3) **Emit audit-friendly telemetry**
+   - evidence-first output (stable references)
+   - explicit “not emitted” instead of silent nulls
+   - research harnesses write **MD + JSON** reports
 
-- **Pearson r = -0.989** (p(perm)=0.000)
-- **Spearman ρ = -1.000** (p(perm)=0.000)
-- Identical descent across **Gegë** and **Tosk** cohorts
-
-### Calibration Spectrum (bucket means, ALL cohort)
-
-Aperture(primary) and aperture(presence mean) by semantic bucket:
-
-| Bucket | Meaning Axis | aperture(primary) | aperture(presence mean) |
-|-------:|--------------|------------------:|-------------------------:|
-| V1 | Expansion / Space | 1.000 | 0.875 |
-| V2 | Force / Mass | 0.860 | 0.735 |
-| V3 | Interior / Depth | 0.600 | 0.550 |
-| V4 | Ground / Balance | 0.550 | 0.530 |
-| V5 | Activity / Direction | 0.400 | 0.433 |
-| V6 | Tension / High / Thin | 0.160 | 0.345 |
-| V7 | Focus / Linearity | 0.120 | 0.150 |
-
-**Requested “meter” points (aperture(primary), ALL cohort):**
-- **V1 = 1.000**
-- **V4 = 0.550**
-- **V7 = 0.120** *(if you want “0.140”, that is the Gegë V7 presence mean; keep both if you want the headline to read 0.140.)*
+This is a research instrument. It helps test hypotheses about vowel structure and meaning. It does **not** claim conclusions by default.
 
 ---
 
-## Mandarin Result (Calibration Integrity / Null)
+## Determinism & anti-regression
 
-Mandarin (Zhuyin; root-only v1.0; 140 single-character roots) is used as a stress test.
+- **SSOT vowel extraction** (one authoritative mapper)
+- **Evidence-first contracts** (UI reads VM; missing data is explicit)
+- **Baseline locking** (drift detection via committed baselines)
 
-The instrument does **not** reproduce the Albanian aperture slope as a universal law:
+Commands:
 
-- N=20 cohort: **aperture(primary) r = -0.546 (p=0.196)**  
-- N=20 cohort: **aperture(presence mean) r = -0.746 (p=0.056)**  
-- Tone diagnostics are tracked separately (toneSlope v0.1)
-
-Interpretation: ZË-RO discriminates **signal vs no-signal**. This is a requirement for scientific credibility.
-
----
-
-## Architecture (Deterministic by Construction)
-
-### SSOT Extraction Rails
-Single-source-of-truth extractors feed every downstream test:
-
-- `extractOrthographyVoicesFromWordV0_1` (Latin orthography)
-- `extractZhuyinSignalV0_1` (Zhuyin + tone)
-
-Downstream layers are forbidden from re-parsing raw inputs differently.
-
-### Pipeline
-
-Input (orthography / Zhuyin)
-→ SSOT Extraction (deterministic)
-→ 7-Voice Reduction (A,O,E,Ë,U,Y,I)
-→ Primary + Presence features
-→ Bucket means (V1..V7)
-→ Correlation (Pearson / Spearman)
-→ Permutation test (12,000 iters; fixed seed)
-→ Reports + Baseline drift checks
-
-
-### Baseline-Locked Drift Detection
-Outputs are split into:
-
-- `tests/validation/out/*` (current run)
-- `tests/validation/baselines/*` (committed reference outputs)
-
-Any delta is actionable: either the dataset changed, the extractor changed, or the scoring changed.
+- `npm run gate:quick` — lint + unit tests + integration + build
+- `npm test` — full suite
+- `npm run canon:c2` — detect drift vs baseline (fails on unexpected change)
+- `npm run canon:c2:update` — refresh baseline after an intentional change
 
 ---
 
-## Reproduce (Local)
+## Deterministic aperture model
 
-**Prereqs:** Node.js 18+  
-**Compute:** full suite ~minutes on standard hardware (depends on machine)
+ZË-RO reduces vowel carriers to 7 categories and assigns a fixed **aperture proxy**:
 
-```bash
-git clone https://github.com/sokolgora-sketch/linguistic-decoder
-cd linguistic-decoder
-npm install
+| Voice | Aperture |
+|------:|--------:|
+| A | 1.0 |
+| O | 0.8 |
+| E | 0.6 |
+| Ë | 0.5 |
+| U | 0.4 |
+| Y | 0.3 |
+| I | 0.1 |
 
-# Albanian: signal detection (baseline locked)
+Two readouts are computed per item:
+- **primary** = first carrier
+- **presence mean** = mean aperture over unique carriers (in order)
+
+---
+
+## Example: “rhythm” (mask vs carrier)
+
+```ts
+analyzeWord("rhythm", { mode: "strict", ipa: "/ˈrɪð(ə)m/" });
+
+Typical behavior:
+
+Orthography (spelling): Y
+
+Phonetics (IPA carriers): I → Ë
+
+Status: DIVERGE
+
+Benchmark: Albanian STEP10 v0.3 (baseline-locked)
+
+Calibration spectrum suite: Albanian Gegë vs Tosk (orthography-only).
+
+Corpus: tests/research/albanian.spectrum.gegTosk.step10.v0.3.txt (N=140, 10/bucket/dialect)
+
+Harness: tests/research/albanian.spectrum.gegTosk.step10.v0.3.spec.ts
+
+Baselines (committed):
+
+tests/validation/baselines/albanian.spectrum.gegTosk.step10.v0.3.md
+
+tests/validation/baselines/albanian.spectrum.gegTosk.step10.v0.3.json
+
+plus audit/compare baselines in the same folder
+
+Bucket means — ALL (N=140)
+
+(From tests/validation/baselines/albanian.spectrum.gegTosk.step10.v0.3.md)
+
+Bucket	N	aperture(primary)	aperture(presence mean)
+V1	20	1.000	0.875
+V2	20	0.860	0.735
+V3	20	0.600	0.550
+V4	20	0.550	0.530
+V5	20	0.400	0.433
+V6	20	0.160	0.345
+V7	20	0.120	0.150
+
+V7 presence-mean by dialect (from JSON baseline):
+
+Tosk V7: 0.160
+
+Gegë V7: 0.140
+
+Slope test (12,000-iter permutation; bucket means vs semantic index 1..7)
+
+(From tests/validation/baselines/albanian.spectrum.gegTosk.step10.v0.3.md)
+
+Cohort	Score	Pearson r	p (perm)	Spearman ρ	p (perm)
+ALL	aperture(primary)	-0.989	0.000	-1.000	0.000
+ALL	aperture(presence mean)	-0.984	0.000	-1.000	0.000
+Tosk	aperture(primary)	-0.989	0.000	-1.000	0.000
+Tosk	aperture(presence mean)	-0.984	0.000	-1.000	0.000
+Gegë	aperture(primary)	-0.989	0.000	-1.000	0.000
+Gegë	aperture(presence mean)	-0.983	0.000	-1.000	0.001
+
+Interpretation (instrument-level, not philosophy):
+
+Rank ordering across V1→V7 bucket means is strictly descending (ρ = -1.000) in the baseline.
+
+The harness exists to make drift visible when the dataset expands or words are replaced.
+
+Honest null / drift visibility: Taiwan Zhuyin suite (Mandarin)
+
+This suite exists to prove the instrument does not force-fit correlations under expansion.
+
+Baselines (committed):
+
+tests/validation/baselines/taiwan.spectrum.rootOnly.v1.0.compare.v0.1.md|json
+
+tests/validation/baselines/taiwan.spectrum.rootOnly.v1.0.audit.v0.1.md|json
+
+tests/validation/baselines/taiwan.spectrum.rootOnly.v1.0.toneSlope.v0.1.md|json
+
+From taiwan.spectrum.rootOnly.v1.0.compare.v0.1.md:
+
+Cohort	Score	Pearson r	p (perm)	Spearman ρ	p (perm)
+N=10	aperture(presence mean)	-0.815	0.026	-0.821	0.032
+N=20	aperture(presence mean)	-0.746	0.056	-0.571	0.204
+
+Reading:
+
+Stable signal should persist or strengthen under expansion.
+
+Fragile signal should weaken (selection bias / drift becomes visible).
+
+Tone diagnostics are tracked separately in toneSlope baselines.
+
+SSOT extraction paths
+
+Orthography SSOT: src/shared/vowels/extractOrthographyVoicesFromWord.v0.1.ts
+
+Zhuyin SSOT: src/shared/vowels/extractZhuyinSignal.v0.1.ts
+
+Reproduce
+# Full gate
+npm run gate:quick
+
+# Albanian STEP10 baseline suite
 npm test -- tests/research/albanian.spectrum.gegTosk.step10.v0.3.spec.ts
 
-# Mandarin: calibration integrity (Zhuyin)
+# Taiwan suite
 npm test -- tests/research/taiwan.spectrum.rootOnly.v1.0.spec.ts
-
-# Full quality gate
-npm run gate:quick
 
 Outputs:
 
-Markdown reports: tests/validation/out/*.md
+tests/validation/out/*.md|*.json (current run)
 
-JSON reports: tests/validation/out/*.json
+tests/validation/baselines/*.md|*.json (committed drift references)
 
-Baselines (reference): tests/validation/baselines/*
-
-All runs are deterministic due to fixed seeds.
-
-Current Metrics (Feb 2026)
-
-Baseline commit (example): 5cc6872
-
-Test suites: 294 passed (297 total; 3 skipped)
-
-Tests: 728 passed (732 total; 4 skipped)
-
-Snapshots: 146 passed (146 total)
-
-Permutation iterations: 12,000 per statistical test
-
-Deterministic seed: 90924101 (base)
-
-Repository Map (Relevant)
-src/shared/vowels/
-  extractOrthographyVoicesFromWord.v0.1.ts
-  extractZhuyinSignal.v0.1.ts
-
-tests/research/
-  albanian.spectrum.gegTosk.step10.v0.3.txt
-  albanian.spectrum.gegTosk.step10.v0.3.spec.ts
-  taiwan.spectrum.rootOnly.v1.0.txt
-  taiwan.spectrum.rootOnly.v1.0.spec.ts
-
-tests/validation/
-  out/
-  baselines/
-Maintainer
-
-Maintainer: Sokol Gora (Kosovo; based in Taiwan)
-This repo is maintained as an instrument: deterministic, baseline-locked, and adversarially tested for false positives.
-
+Run locally
+npm install
+npm run dev
+# http://localhost:3000
 License
 
-MIT (code). Datasets as labeled in-repo.
-
-Last updated: Feb 2026 — Albanian signal detected; Mandarin null confirmed; extraction rails + baselines locked.
+GNU Affero General Public License v3.0 (AGPL-3.0). See LICENSE.
