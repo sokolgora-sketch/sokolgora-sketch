@@ -1,4 +1,5 @@
-# ZË-RO — Linguistic Decoder
+# ZË-RO: Articulatory Physics Instrument
+The Deterministic Standard for Semantic Grounding
 
 *A deterministic seven-vowel analysis instrument (orthography + optional IPA) with evidence-first telemetry and baseline-locked research harnesses.*
 
@@ -123,6 +124,9 @@ npm run gate:quick
 npm test -- tests/research/turkish.spectrum.step20.v0.1.spec.ts
 
 Outputs:
+
+About
+I’m a graphic/designer/moving into engineering through research-grade tools. I care about determinism, auditability, and building instruments that don’t fake signal.
 
 tests/validation/out/*.md|*.json (current run)
 
