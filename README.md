@@ -187,3 +187,17 @@ npm run dev
 License
 
 GNU Affero General Public License v3.0 (AGPL-3.0). See LICENSE.
+
+## Benchmarks (baseline-locked)
+
+These are **instrument baselines** committed in the ZË-RO repo to make drift visible.
+
+- Albanian (Gegë/Tosk) STEP10 v0.3 — baseline locked under `linguistic-decoder/tests/validation/baselines/`.
+- Turkish STEP10 v0.1 (langHint=tr) — presence-mean slope: r=-0.987 p=0.000; ρ=-0.964 p=0.002.
+- Turkish STEP20 v0.1 (langHint=tr) — presence-mean slope: r=-0.989 p=0.000; ρ=-1.000 p=0.000.
+- Turkish STEP10→STEP20 compare (v0.1) — Δ|ρ|=+0.036 (signal strengthens under expansion).
+
+See:
+- `linguistic-decoder/tests/validation/baselines/turkish.spectrum.step10.v0.1.md|json`
+- `linguistic-decoder/tests/validation/baselines/turkish.spectrum.step20.v0.1.md|json`
+- `linguistic-decoder/tests/validation/baselines/turkish.spectrum.step20.v0.1.compare.v0.1.md|json`
